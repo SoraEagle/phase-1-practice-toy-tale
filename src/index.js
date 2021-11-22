@@ -77,7 +77,7 @@ function loadToys(){ //loadToys is the function for fetching all of the toy Obje
 //     })
 //     .catch(function (error){
 //       let message = 'Code is still in Beta!';
-//       alert("Ragnarők!  Unable to create the toy!"); //Alert when error occurs with fetching toys
+//       alert("Ragnarők!  Unable to create the toy!"); //Alert when error occurs with creating a toy
 //       document.body.innerHTML = error.message; //replace page contents with this error message.
 //   });
 //   }
@@ -99,6 +99,6 @@ function loadToys(){ //loadToys is the function for fetching all of the toy Obje
 // })
 // .catch(function (error){
 //   let message = 'Code is still in Beta!';
-//   alert("Ragnarők!  Unable to like the toy!"); //Alert when error occurs with fetching toys
+//   alert("Ragnarők!  Unable to like the toy!"); //Alert when error occurs when liking a toy
 //   document.body.innerHTML = error.message; //replace page contents with this error message.
 // });
