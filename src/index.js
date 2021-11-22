@@ -69,10 +69,11 @@ document.getElementsByClassName("submit").addEventListener("click", (event) => {
   }
 });
 
-//for(const in ){//Use a For In Loop so that, for each toy...}
+//for(const id of ){//Use a For Of Loop so that, for each toy...}
+let toyID = `http://localhost:3000/toys/${id}`;
 document.addEventListener("click", likeToy); //Place Event Listener on Like button of each toy.
 
-fetch(/*provide dynamic url*/, {
+fetch(toyID, {
   method: "PATCH", 
       headers: {
         "Content-Type": "application/json",
