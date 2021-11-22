@@ -15,11 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 let toyUrl = "http://localhost:3000/toys"; //toyUrl is the URL that all of the toy info is stored at.
-//Create a toy Object, where for each key, the value is a reference to where to find it
-/*
+/* Create a toy Object, where for each key, the value is a reference to where to find it
 const toy = {
-  Name:  //String
-  Image:  //URL
+  Name:  document.getElementBy  //String
+  Image:  document.getElementBy  //URL
   Likes: 
   ID:  `http://localhost:3000/toys/${id}`
 }*/
@@ -34,7 +33,8 @@ function loadToys(){ //loadToys is the function for fetching all of the toy Obje
     method: "GET" //Method to retrieve
     .then(response => response.json()) //Converts response to JSON
       .then(data => { //Where the toy cards will be created
-        
+        const toyContainer = document.getElementById('toy-collection'); //Reference to toy-collection div.
+
       })
   })
   .catch(function (error){
