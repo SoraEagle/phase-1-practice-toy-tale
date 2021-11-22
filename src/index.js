@@ -33,22 +33,33 @@ function loadToys(){ //loadToys is the function for fetching all of the toy Obje
     method: "GET"
   })
   .then(response => response.json()) //Converts response to JSON
-  .then(data => { //Where the toy cards will be created
+  .then(data => {
      for(const toy of data){
       const toyContainer = document.getElementById('toy-collection'); //Reference to toy-collection div.
       let toyCard = document.createElement("div"); //create card.
-      toyCard.class = "card";
-      toyContainer.appendChild(toyCard); //append toyCard to toyContainer.
+      toyCard.setAttribute("class", "card");
+
       let toyName = document.createElement("h2"); //Toy's name.
       toyName.innerText = toy.name;
+
       let toyImage = document.createElement("img"); //Toy's image.
-      toyImage.class = "toy-avatar";
-      toyImage.src = toy.image; //Toy's image's src
+      // toyImage.setAttribute("class", "toy-avatar");
+      toyImage.className += "toy-avatar";
+      toyImage.setAttribute("src", toy.image);
+
       let toyLikes = document.createElement("p"); //Toy's number of likes.
+      toyLikes.innerText = `${toy.likes} likes`;
+
       let toyLikeButton = document.createElement("button"); //Toy's like button.
       toyLikeButton.innerText = "Like";
-      toyLikeButton.id = toy.id;
-      toyCard.appendChild(toyName, toyImage, toyLikes, toyLikeButton); //Append child elements to toyCard.
+      toyLikeButton.setAttribute("id", "toy.id");
+
+      //Append child elements to toyCard.
+      toyCard.appendChild(toyName);
+      toyCard.appendChild(toyImage);
+      toyCard.appendChild(toyLikes);
+      toyCard.appendChild(toyLikeButton);
+      toyContainer.appendChild(toyCard); //append toyCard to toyContainer.
       debugger;
      }
   })
