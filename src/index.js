@@ -31,70 +31,71 @@ document.addEventListener("DOMContentLoaded", () => {
 function loadToys(){ //loadToys is the function for fetching all of the toy Objects.
   fetch(toyUrl, {
     method: "GET" //Method to retrieve
-    .then(response => response.json()) //Converts response to JSON
-      .then(data => { //Where the toy cards will be created
-        const toyContainer = document.getElementById('toy-collection'); //Reference to toy-collection div.
-        let toyCard = document.createElement("div"); //create the card.
-        toyCard.class = "card";
-        toyContainer.appendChild(toyCard); //append toyCard to toyContainer.
-        let toyName = document.createElement("h2"); //Toy's name.
-        let toyImage = document.createElement("img"); //Toy's image.
-        toyImage.class = "toy-avatar";
-        //Toy's image's src
-        let toyLikes = document.createElement("p"); //Toy's number of likes.
-        let toyLikeButton = document.createElement("button"); //Toy's like button
-        //set toyLikeButton's id to be toy's ID#
-        toyCard.appendChild(toyName, toyImage, toyLikes, toyLikeButton); //Append the child elements to toyCard.
-      })
+  })
+  .then(response => response.json()) //Converts response to JSON
+  .then(data => { //Where the toy cards will be created
+    const toyContainer = document.getElementById('toy-collection'); //Reference to toy-collection div.
+    let toyCard = document.createElement("div"); //create the card.
+    toyCard.class = "card";
+    toyContainer.appendChild(toyCard); //append toyCard to toyContainer.
+    let toyName = document.createElement("h2"); //Toy's name.
+    //Set toyName.innerText to toy's name
+    let toyImage = document.createElement("img"); //Toy's image.
+    toyImage.class = "toy-avatar";
+    //Toy's image's src
+    let toyLikes = document.createElement("p"); //Toy's number of likes.
+    let toyLikeButton = document.createElement("button"); //Toy's like button
+    //set toyLikeButton's id to be toy's ID#
+    toyCard.appendChild(toyName, toyImage, toyLikes, toyLikeButton); //Append child elements to toyCard.
   })
   .catch(function (error){
     let message = 'Code is still in Beta!';
     alert("Ragnarők!  Unable to fetch the toys!"); //Alert when error occurs with fetching toys
     document.body.innerHTML = error.message; //replace page contents with this error message.
-});
+  });
 }
 
-document.getElementsByClassName("submit").addEventListener("click", (event) => {
-  event.preventDefault(); //Prevent reloading the page after clicking the button.
-  function addToy(){ //addToy is the function for submitting a new toy to the list.
-    fetch(toyUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      }
-      body: JSON.stringify({
-        //Toy Object:
-        //"toyName"
-        //"toyImage"
-        //"toyLikes": 0
-      })
+// document.getElementsByClassName("submit").addEventListener("click", (event) => {
+//   event.preventDefault(); //Prevent reloading the page after clicking the button.
+//   function addToy(){ //addToy is the function for submitting a new toy to the list.
+//     fetch(toyUrl, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Accept: "application/json"
+//       }
+//       body: JSON.stringify({
+//         //Toy Object:
+//         //"toyName"
+//         //"toyImage"
+//         //"toyLikes": 0
+//       })
   
-    })
-    .catch(function (error){
-      let message = 'Code is still in Beta!';
-      alert("Ragnarők!  Unable to create the toy!"); //Alert when error occurs with fetching toys
-      document.body.innerHTML = error.message; //replace page contents with this error message.
-  });
-  }
-});
+//     })
+//     .catch(function (error){
+//       let message = 'Code is still in Beta!';
+//       alert("Ragnarők!  Unable to create the toy!"); //Alert when error occurs with fetching toys
+//       document.body.innerHTML = error.message; //replace page contents with this error message.
+//   });
+//   }
+// });
 
-//for(const id of ){//Use a For Of Loop so that, for each toy...}
-let toyID = `http://localhost:3000/toys/${id}`;
-document.addEventListener("click", likeToy); //Place Event Listener on Like button of each toy.
+// //for(const id of ){//Use a For Of Loop so that, for each toy...}
+// let toyID = `http://localhost:3000/toys/${id}`;
+// document.addEventListener("click", likeToy); //Place Event Listener on Like button of each toy.
 
-fetch(toyID, {
-  method: "PATCH", 
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      }
-      body: JSON.stringify({
+// fetch(toyID, {
+//   method: "PATCH", 
+//       headers: {
+//         "Content-Type": "application/json",
+//         Accept: "application/json"
+//       }
+//       body: JSON.stringify({
 
-      })
-})
-.catch(function (error){
-  let message = 'Code is still in Beta!';
-  alert("Ragnarők!  Unable to like the toy!"); //Alert when error occurs with fetching toys
-  document.body.innerHTML = error.message; //replace page contents with this error message.
-});
+//       })
+// })
+// .catch(function (error){
+//   let message = 'Code is still in Beta!';
+//   alert("Ragnarők!  Unable to like the toy!"); //Alert when error occurs with fetching toys
+//   document.body.innerHTML = error.message; //replace page contents with this error message.
+// });
