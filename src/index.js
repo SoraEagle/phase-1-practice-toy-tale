@@ -38,9 +38,9 @@ function loadToys(){ //loadToys is the function for fetching all of the toy Obje
       })
   })
   .catch(function (error){
-    let message = 'Unauthorized Access';
-    alert("Ragnarők!  Unable to fetch toys!"); //Alert when an error occurs with fetching toys
-    document.body.innerHTML = error.message; //append the error message to DOM
+    let message = 'Code is still in Beta!';
+    alert("Ragnarők!  Unable to fetch the toys!"); //Alert when error occurs with fetching toys
+    document.body.innerHTML = error.message; //replace page contents with this error message.
 });
 }
 
@@ -61,6 +61,11 @@ document.getElementsByClassName("submit").addEventListener("click", (event) => {
       })
   
     })
+    .catch(function (error){
+      let message = 'Code is still in Beta!';
+      alert("Ragnarők!  Unable to create the toy!"); //Alert when error occurs with fetching toys
+      document.body.innerHTML = error.message; //replace page contents with this error message.
+  });
   }
 });
 
@@ -77,6 +82,8 @@ fetch(/*provide dynamic url*/, {
 
       })
 })
-function likeToy(){ //likeToy is the function for updating the number of likes on a toy
-
-}
+.catch(function (error){
+  let message = 'Code is still in Beta!';
+  alert("Ragnarők!  Unable to like the toy!"); //Alert when error occurs with fetching toys
+  document.body.innerHTML = error.message; //replace page contents with this error message.
+});
