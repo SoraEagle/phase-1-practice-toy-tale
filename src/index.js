@@ -19,10 +19,10 @@ let toyUrl = "http://localhost:3000/toys"; //toyUrl is the URL that all of the t
 //Create a toy Object, where for each key, the value is a reference to where to find it
 /*
 const toy = {
-  Name //String
-  Image //URL
-  Likes
-  ID http://localhost:3000/toys
+  Name:  //String
+  Image:  //URL
+  Likes: 
+  ID:  http://localhost:3000/toys
 }
 */
 
@@ -30,18 +30,16 @@ const toy = {
 
 document.addEventListener("DOMContentLoaded", () => {
   console.log("DOM has loaded");
-
+  loadToys();
 });
 
 function loadToys(){ //loadToys is the function for fetching all of the toy Objects.
-  //GET
   fetch(toyUrl, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json"
     }
-    //Body
     body: JSON.stringify({
 
     })
@@ -78,7 +76,7 @@ fetch(provide dynamic url, {
         Accept: "application/json"
       }
       body: JSON.stringify({
-        
+
       })
 })
 function likeToy(){ //likeToy is the function for updating the number of likes on a toy
