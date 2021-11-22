@@ -30,25 +30,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function loadToys(){ //loadToys is the function for fetching all of the toy Objects.
   fetch(toyUrl, {
-    method: "GET" //Method to retrieve
+    method: "GET"
   })
   .then(response => response.json()) //Converts response to JSON
   .then(data => { //Where the toy cards will be created
-     for(const toy of data.message){
+     for(const toy of data){
       const toyContainer = document.getElementById('toy-collection'); //Reference to toy-collection div.
       let toyCard = document.createElement("div"); //create card.
       toyCard.class = "card";
       toyContainer.appendChild(toyCard); //append toyCard to toyContainer.
       let toyName = document.createElement("h2"); //Toy's name.
-      //Set toyName.innerText to toy's name
+      toyName.innerText = toy.name;
       let toyImage = document.createElement("img"); //Toy's image.
       toyImage.class = "toy-avatar";
-      //Toy's image's src
+      toyImage.src = toy.image; //Toy's image's src
       let toyLikes = document.createElement("p"); //Toy's number of likes.
       let toyLikeButton = document.createElement("button"); //Toy's like button.
       toyLikeButton.innerText = "Like";
-      //set toyLikeButton's id to be toy's ID#
+      toyLikeButton.id = toy.id;
       toyCard.appendChild(toyName, toyImage, toyLikes, toyLikeButton); //Append child elements to toyCard.
+      debugger;
      }
   })
   .catch(function (error){
