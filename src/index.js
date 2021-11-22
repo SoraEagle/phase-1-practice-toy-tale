@@ -17,9 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
 let toyUrl = "http://localhost:3000/toys"; //toyUrl is the URL that all of the toy info is stored at.
 /* Create a toy Object, where for each key, the value is a reference to where to find it
 const toy = {
-  Name:  document.getElementBy  //String
-  Image:  document.getElementBy  //URL
-  Likes: 
+  Name:  document.getElementById(""); //String
+  Image:  document.getElementById(""); //URL
+  Likes: getElementById("");
   ID:  `http://localhost:3000/toys/${id}`
 }*/
 
@@ -34,7 +34,17 @@ function loadToys(){ //loadToys is the function for fetching all of the toy Obje
     .then(response => response.json()) //Converts response to JSON
       .then(data => { //Where the toy cards will be created
         const toyContainer = document.getElementById('toy-collection'); //Reference to toy-collection div.
-
+        let toyCard = document.createElement("div"); //create the card.
+        toyCard.class = "card";
+        toyContainer.appendChild(toyCard); //append toyCard to toyContainer.
+        let toyName = document.createElement("h2"); //Toy's name.
+        let toyImage = document.createElement("img"); //Toy's image.
+        toyImage.class = "toy-avatar";
+        //Toy's image's src
+        let toyLikes = document.createElement("p"); //Toy's number of likes.
+        let toyLikeButton = document.createElement("button"); //Toy's like button
+        //set toyLikeButton's id to be toy's ID#
+        toyCard.appendChild(toyName, toyImage, toyLikes, toyLikeButton); //Append the child elements to toyCard.
       })
   })
   .catch(function (error){
@@ -55,9 +65,9 @@ document.getElementsByClassName("submit").addEventListener("click", (event) => {
       }
       body: JSON.stringify({
         //Toy Object:
-        //"Name"
-        //"Image"
-        //"Likes": 0
+        //"toyName"
+        //"toyImage"
+        //"toyLikes": 0
       })
   
     })
