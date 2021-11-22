@@ -22,7 +22,7 @@ const toy = {
   Name //String
   Image //URL
   Likes
-  ID 
+  ID http://localhost:3000/toys
 }
 */
 
@@ -35,6 +35,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function loadToys(){ //loadToys is the function for fetching all of the toy Objects.
   //GET
+  fetch(toyUrl, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    }
+    //Body
+    body: JSON.stringify({
+
+    })
+  })
 }
 
 document.getElementsByClassName("submit").addEventListener("click", (event) => {
@@ -59,7 +70,17 @@ document.getElementsByClassName("submit").addEventListener("click", (event) => {
 
 //for(const in ){//Use a For In Loop so that, for each toy...}
 document.addEventListener("click", likeToy); //Place Event Listener on Like button of each toy.
-//PATCH
+
+fetch(provide dynamic url, {
+  method: "PATCH", 
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      }
+      body: JSON.stringify({
+        
+      })
+})
 function likeToy(){ //likeToy is the function for updating the number of likes on a toy
 
 }
