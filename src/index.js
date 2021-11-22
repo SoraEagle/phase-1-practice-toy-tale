@@ -34,19 +34,22 @@ function loadToys(){ //loadToys is the function for fetching all of the toy Obje
   })
   .then(response => response.json()) //Converts response to JSON
   .then(data => { //Where the toy cards will be created
-    const toyContainer = document.getElementById('toy-collection'); //Reference to toy-collection div.
-    let toyCard = document.createElement("div"); //create the card.
-    toyCard.class = "card";
-    toyContainer.appendChild(toyCard); //append toyCard to toyContainer.
-    let toyName = document.createElement("h2"); //Toy's name.
-    //Set toyName.innerText to toy's name
-    let toyImage = document.createElement("img"); //Toy's image.
-    toyImage.class = "toy-avatar";
-    //Toy's image's src
-    let toyLikes = document.createElement("p"); //Toy's number of likes.
-    let toyLikeButton = document.createElement("button"); //Toy's like button
-    //set toyLikeButton's id to be toy's ID#
-    toyCard.appendChild(toyName, toyImage, toyLikes, toyLikeButton); //Append child elements to toyCard.
+     for(const toy of data.message){
+      const toyContainer = document.getElementById('toy-collection'); //Reference to toy-collection div.
+      let toyCard = document.createElement("div"); //create card.
+      toyCard.class = "card";
+      toyContainer.appendChild(toyCard); //append toyCard to toyContainer.
+      let toyName = document.createElement("h2"); //Toy's name.
+      //Set toyName.innerText to toy's name
+      let toyImage = document.createElement("img"); //Toy's image.
+      toyImage.class = "toy-avatar";
+      //Toy's image's src
+      let toyLikes = document.createElement("p"); //Toy's number of likes.
+      let toyLikeButton = document.createElement("button"); //Toy's like button.
+      toyLikeButton.innerText = "Like";
+      //set toyLikeButton's id to be toy's ID#
+      toyCard.appendChild(toyName, toyImage, toyLikes, toyLikeButton); //Append child elements to toyCard.
+     }
   })
   .catch(function (error){
     let message = 'Code is still in Beta!';
