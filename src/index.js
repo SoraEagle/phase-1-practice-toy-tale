@@ -83,12 +83,16 @@ function loadToys(){ //loadToys is the function for fetching all of the toy Obje
 
       let toyID = `http://localhost:3000/toys/${toyLikeButton.id}`;
       toyLikeButton.addEventListener("click", (event) => { //Place Event Listener on Like button of each toy.
+        event.preventDefault();
         fetch(toyID, {
           method: "PATCH", 
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json"
-          }
+          },
+        })
+        .then(data => {
+          toy.likes = `${toy.likes + 1} likes`;
         })
         .catch(function (error){
           alert("Ragnarők!  Unable to leave a like for the toy!"); //Alert when error occurs when liking a toy
