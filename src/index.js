@@ -26,7 +26,7 @@ nameInput.id = "name-input";
 nameInput.addEventListener("submit", (event) => {
   event.preventDefault();
   console.log(event.target.value);
-  toyData.toyName = nameInput.innerText;
+  toyData.toyName = nameInput.value;
 })
 
 let imgInput = document.getElementsByTagName("input")[1]; //Set new toy's img to innerText.
@@ -34,7 +34,7 @@ imgInput.id = "image-input";
 imgInput.addEventListener("submit", (event) => {
   event.preventDefault();
   console.log(event.target.value);
-  toyData.toyImage = imgInput.innerText;
+  toyData.toyImage = imgInput.value;
 })
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -43,8 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 let toyData = { //Object used to create a new toy.
-  "toyName": nameInput.innerHTML,
-  "toyImage": imgInput.innerHTML,
+  "toyName": "",
+  "toyImage": "",
   "toyLikes": 0
 }
 
