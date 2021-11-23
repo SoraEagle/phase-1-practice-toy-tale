@@ -15,8 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 let toyUrl = "http://localhost:3000/toys"; //toyUrl is URL where info of all toys is stored at.
-/* 
-const toy = { Create toy Object, where for each key, the value is a reference to where to find it
+/* const toy = { Create toy Object, where for each key, the value is a reference to where to find it
   Name:  document.getElementById("");
   Image:  document.getElementById("");
   Likes: getElementById("");
@@ -108,20 +107,23 @@ createToy.addEventListener("click", (event) => {
   }
 });
 
-// let toyID = `http://localhost:3000/toys/${toyLikeButton.id}`;
 function updateLikes(event){ //Function to add a like
       event.preventDefault(); //Prevent refreshing of the page.
+      console.log(event);
       debugger;
       event.target.value;
-      fetch(toyUrl, {
+      let toyID = `http://localhost:3000/toys/${event.target.id}`;
+      fetch(toyID, {
         method: "PATCH", 
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json"
         },
+        body: JSON.stringify()
       })
-      .then(data => {
-        data.likes = `${data.likes + 1} likes`; //Add a like.
+      .then(data => { //Allows referencing the db data.
+        // data.likes = `${data.likes + 1} likes`; //Add a like.
+        event.target.previousElementSibling.innerText = `${data.likes + 1} likes`;
       })
       .catch(function (error){
         alert("Ragnarők!  Unable to leave a like for the toy!"); //Alert when error occurs when liking a toy
