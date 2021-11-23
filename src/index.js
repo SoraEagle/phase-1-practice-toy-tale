@@ -53,6 +53,7 @@ function loadToys(){ //loadToys is the function for fetching all of the toy Obje
   })
   .then(response => response.json()) //Converts response to JSON
   .then(data => {
+    console.log(data);
      for(const toy of data){
       const toyContainer = document.getElementById('toy-collection'); //Reference to toy-collection div.
       let toyCard = document.createElement("div"); //create card.
@@ -109,8 +110,8 @@ createToy.addEventListener("click", (event) => {
 
 function updateLikes(event){ //Function to add a like
       event.preventDefault(); //Prevent refreshing of the page.
-      console.log(event);
-      debugger;
+      // console.log(event);
+      // debugger;
       event.target.value;
       let toyID = `http://localhost:3000/toys/${event.target.id}`;
       fetch(toyID, {
@@ -119,11 +120,15 @@ function updateLikes(event){ //Function to add a like
           "Content-Type": "application/json",
           Accept: "application/json"
         },
-        body: JSON.stringify()
+        body: JSON.stringify(event.target.previousElementSibling.value)
       })
       .then(data => { //Allows referencing the db data.
+        console.log(data);
+        debugger;
         // data.likes = `${data.likes + 1} likes`; //Add a like.
-        event.target.previousElementSibling.innerText = `${data.likes + 1} likes`;
+        console.log(event.target.previousElementSibling.innerHTML);
+        event.target.previousElementSibling.value = `${event.target.previousElementSibling.value + 1} likes`;
+        // console.log(event.target.previousElementSibling.innerHTML);
       })
       .catch(function (error){
         alert("Ragnarők!  Unable to leave a like for the toy!"); //Alert when error occurs when liking a toy
