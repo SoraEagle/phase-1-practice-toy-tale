@@ -20,19 +20,34 @@ const toy = {
   Name:  document.getElementById(""); //String
   Image:  document.getElementById(""); //URL
   Likes: getElementById("");
-  ID:  `http://localhost:3000/toys/${id}`
 }*/
 
-let nameInput = document.getElementsByTagName("input")[0].innerText; //set new toy's name to innerText.
-nameInput.setAttribute("id", "name-input");
+let nameInput = document.getElementsByTagName("input")[0].innerHTML; //set new toy's name to innerText.
+nameInput.id = "name-input";
+nameInput.addEventListener("submit", (event) => {
+  event.preventDefault();
+  console.log(event.target.value);
+  //return event
+})
 
-let imgInput = document.getElementsByTagName("input")[1].innerText; //Set new toy's img to innerText.
-imgInput.setAttribute("id", "image-input");
+let imgInput = document.getElementsByTagName("input")[1].innerHTML; //Set new toy's img to innerText.
+imgInput.id = "image-input";
+imgInput.addEventListener("submit", (event) => {
+  event.preventDefault();
+  console.log(event.target.value);
+
+})
 
 document.addEventListener("DOMContentLoaded", () => {
   console.log("DOM has loaded");
   loadToys();
 });
+
+let toyData = { //Object used to create a new toy.
+  "toyName": nameInput,
+  "toyImage": imgInput,
+  "toyLikes": 0
+}
 
 function loadToys(){ //loadToys is the function for fetching all of the toy Objects.
   fetch(toyUrl, {
@@ -71,12 +86,6 @@ function loadToys(){ //loadToys is the function for fetching all of the toy Obje
     alert("Ragnarők!  Unable to fetch the toys!"); //Alert when error occurs with fetching toys
     document.body.innerHTML = error.message; //replace page contents with this error message.
   });
-}
-
-let toyData = {
-  "toyName": nameInput,
-  "toyImage": imgInput,
-  "toyLikes": 0
 }
 
 let createToy = document.getElementsByTagName("input")[2]; //The Submit button.
