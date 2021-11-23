@@ -14,20 +14,19 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-let toyUrl = "http://localhost:3000/toys"; //toyUrl is the URL that all of the toy info is stored at.
-/* Create a toy Object, where for each key, the value is a reference to where to find it
-const toy = {
-  Name:  document.getElementById(""); //String
-  Image:  document.getElementById(""); //URL
+let toyUrl = "http://localhost:3000/toys"; //toyUrl is URL where info of all toys is stored at.
+/* 
+const toy = { Create toy Object, where for each key, the value is a reference to where to find it
+  Name:  document.getElementById("");
+  Image:  document.getElementById("");
   Likes: getElementById("");
 }*/
-
 let nameInput = document.getElementsByTagName("input")[0]; //set new toy's name to innerText.
 nameInput.id = "name-input";
 nameInput.addEventListener("submit", (event) => {
   event.preventDefault();
   console.log(event.target.value);
-  //return event
+  toyData.toyName = nameInput.innerText;
 })
 
 let imgInput = document.getElementsByTagName("input")[1]; //Set new toy's img to innerText.
@@ -35,7 +34,7 @@ imgInput.id = "image-input";
 imgInput.addEventListener("submit", (event) => {
   event.preventDefault();
   console.log(event.target.value);
-  //
+  toyData.toyImage = imgInput.innerText;
 })
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -100,7 +99,7 @@ createToy.addEventListener("click", (event) => {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify(toyData) //
+      body: JSON.stringify(toyData) 
     })
     .catch(function (error){
       alert("Ragnarők!  Unable to create the toy!"); //Alert when error occurs with creating a toy
@@ -108,7 +107,6 @@ createToy.addEventListener("click", (event) => {
   });
   }
 });
-
 
 // let toyID = `http://localhost:3000/toys/${toyLikeButton.id}`;
 function updateLikes(event){ //Function to add a like
@@ -123,7 +121,7 @@ function updateLikes(event){ //Function to add a like
         },
       })
       .then(data => {
-        toy.likes = `${data.likes + 1} likes`;
+        data.likes = `${data.likes + 1} likes`; //Add a like.
       })
       .catch(function (error){
         alert("Ragnarők!  Unable to leave a like for the toy!"); //Alert when error occurs when liking a toy
@@ -132,7 +130,7 @@ function updateLikes(event){ //Function to add a like
     }
     
     function buttonListener(){
-      let selectToyButtons = document.querySelectorAll(".toy-button"); //On eachbutton with class "toy-button"...
+      let selectToyButtons = document.querySelectorAll(".toy-button"); //For buttons with class "toy-button"...
       for(const buttons of selectToyButtons){ //Loop through Array to ...
         buttons.addEventListener("click", (updateLikes)); //Place Event Listener on each button.
       }
