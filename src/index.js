@@ -71,6 +71,7 @@ function loadToys(){ //loadToys is the function for fetching all of the toy Obje
       toyLikes.innerText = `${toy.likes} likes`;
 
       let toyLikeButton = document.createElement("button"); //Toy's like button.
+      toyLikeButton.setAttribute("class", "toy-button");
       toyLikeButton.innerText = "Like";
       toyLikeButton.id = toy.id;
 
@@ -80,25 +81,7 @@ function loadToys(){ //loadToys is the function for fetching all of the toy Obje
       toyCard.appendChild(toyLikes);
       toyCard.appendChild(toyLikeButton);
       toyContainer.appendChild(toyCard); //append toyCard to toyContainer.
-
-      let toyID = `http://localhost:3000/toys/${toyLikeButton.id}`;
-      toyLikeButton.addEventListener("click", (event) => { //Place Event Listener on Like button of each toy.
-        event.preventDefault();
-        fetch(toyID, {
-          method: "PATCH", 
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json"
-          },
-        })
-        .then(data => {
-          toy.likes = `${toy.likes + 1} likes`;
-        })
-        .catch(function (error){
-          alert("Ragnarők!  Unable to leave a like for the toy!"); //Alert when error occurs when liking a toy
-          document.body.innerHTML = error.message; //replace page contents with this error message.
-        });
-      });
+      buttonListener();
     }
   })
   .catch(function (error){
@@ -125,3 +108,33 @@ createToy.addEventListener("click", (event) => {
   });
   }
 });
+
+
+// let toyID = `http://localhost:3000/toys/${toyLikeButton.id}`;
+function updateLikes(event){ //Function to add a like
+      event.preventDefault(); //Prevent refreshing of the page.
+      debugger;
+      event.target.value;
+      fetch(toyUrl, {
+        method: "PATCH", 
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+      })
+      .then(data => {
+        toy.likes = `${data.likes + 1} likes`;
+      })
+      .catch(function (error){
+        alert("Ragnarők!  Unable to leave a like for the toy!"); //Alert when error occurs when liking a toy
+        document.body.innerHTML = error.message; //replace page contents with this error message.
+      });
+    }
+    
+    function buttonListener(){
+      let selectToyButtons = document.querySelectorAll(".toy-button"); //On eachbutton with class "toy-button"...
+      for(const buttons of selectToyButtons){ //Loop through Array to ...
+        buttons.addEventListener("click", (updateLikes)); //Place Event Listener on each button.
+      }
+      // selectToyButtons.addEventListener("click", updateLikes);
+    }
