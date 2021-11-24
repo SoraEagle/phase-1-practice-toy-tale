@@ -53,7 +53,6 @@ function loadToys(){ //loadToys is the function for fetching all of the toy Obje
   })
   .then(response => response.json()) //Converts response to JSON
   .then(data => {
-    console.log(data);
      for(const toy of data){
       const toyContainer = document.getElementById('toy-collection'); //Reference to toy-collection div.
       let toyCard = document.createElement("div"); //create card.
@@ -110,24 +109,24 @@ createToy.addEventListener("click", (event) => {
 
 function updateLikes(event){ //Function to add a like
       event.preventDefault(); //Prevent refreshing of the page.
-      // console.log(event);
+      console.log(event);
       // debugger;
       event.target.value;
-      let toyID = `http://localhost:3000/toys/${event.target.id}`;
+      let toyID = `${toyUrl}/${event.target.id}`; //http://localhost:3000/(toy's ID #).
       fetch(toyID, {
         method: "PATCH", 
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json"
         },
-        body: JSON.stringify(event.target.previousElementSibling.value)
+        body: JSON.stringify()
       })
       .then(data => { //Allows referencing the db data.
         console.log(data);
         debugger;
         // data.likes = `${data.likes + 1} likes`; //Add a like.
-        console.log(event.target.previousElementSibling.innerHTML);
-        event.target.previousElementSibling.value = `${event.target.previousElementSibling.value + 1} likes`;
+        console.log(event.target.previousElementSibling.innerText);
+        event.target.previousElementSibling.innerText = `${data.likes + 1} likes`;
         // console.log(event.target.previousElementSibling.innerHTML);
       })
       .catch(function (error){
