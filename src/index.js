@@ -19,19 +19,19 @@ let toyUrl = "http://localhost:3000/toys"; //toyUrl is URL where info of all toy
 function formSubmit(event){ //For pushing toy info to toys
     event.preventDefault();
     // debugger;
-  let nameInput = document.getElementsByTagName("input")[0]; //set new toy's name to .value.
-  nameInput.id = "name-input";
-  toyName = nameInput.value;
+    let nameInput = document.getElementsByTagName("input")[0]; //set new toy's name to .value.
+    nameInput.id = "name-input";
+    toyName = nameInput.value;
 
-  let imgInput = document.getElementsByTagName("input")[1]; //set new toy's image to .value.
-  imgInput.id = "image-input";
-  toyImage = imgInput.value;
+    let imgInput = document.getElementsByTagName("input")[1]; //set new toy's image to .value.
+    imgInput.id = "image-input";
+    toyImage = imgInput.value;
 
-  let toy = { //Create a toy Object
-    "name": toyName,
-    "image": toyImage,
-    "likes": 0
-  }
+    let toy = { //Create a toy Object
+      "name": toyName,
+      "image": toyImage,
+      "likes": 0
+    }
 
 // let imgInput = document.getElementsByTagName("input")[1]; //Set new toy's img to innerText.
 imgInput.id = "image-input";
@@ -45,6 +45,10 @@ fetch(toyUrl, {
   },
   body: JSON.stringify(toy) 
 })
+.then(response => response.json()) //Converts response to JSON
+  .then(data => {
+    toyContainer.append(toy); //append the new toy here!
+  })
 .catch(function (error){
   alert("Ragnarők!  Unable to create the toy!"); //Alert when error occurs with creating a toy
   document.body.innerHTML = error.message; //replace page contents with this error message.
