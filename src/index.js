@@ -1,6 +1,6 @@
 let addToy = false;
 
-document.addEventListener("DOMContentLoaded", () => {
+// document.addEventListener("DOMContentLoaded", () => {
   const addBtn = document.querySelector("#new-toy-btn");
   const toyFormContainer = document.querySelector(".container");
   addBtn.addEventListener("click", () => {
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
       toyFormContainer.style.display = "none";
     }
   });
-});
+// });
 
 let toyUrl = "http://localhost:3000/toys"; //toyUrl is URL where info of all toys is stored at.
 
@@ -47,7 +47,7 @@ fetch(toyUrl, {
 })
 .then(response => response.json()) //Converts response to JSON
   .then(data => {
-    toyContainer.append(toy); //append the new toy here!
+    toyFormContainer.append(toy); //append the new toy here!
   })
 .catch(function (error){
   alert("Ragnarők!  Unable to create the toy!"); //Alert when error occurs with creating a toy
