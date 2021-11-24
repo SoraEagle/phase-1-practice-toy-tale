@@ -109,8 +109,6 @@ createToy.addEventListener("click", (event) => {
 
 function updateLikes(event){ //Function to add a like
       event.preventDefault(); //Prevent refreshing of the page.
-      console.log(event);
-      // debugger;
       event.target.value;
       let toyID = `${toyUrl}/${event.target.id}`; //http://localhost:3000/(toy's ID #).
       fetch(toyID, {
@@ -122,12 +120,12 @@ function updateLikes(event){ //Function to add a like
         body: JSON.stringify()
       })
       .then(data => { //Allows referencing the db data.
-        console.log(data);
-        debugger;
-        // data.likes = `${data.likes + 1} likes`; //Add a like.
-        console.log(event.target.previousElementSibling.innerText);
-        event.target.previousElementSibling.innerText = `${data.likes + 1} likes`;
-        // console.log(event.target.previousElementSibling.innerHTML);
+        // console.log(event.target.previousElementSibling.innerText);
+        let eventArray = event.target.previousElementSibling.innerText.split(" ");
+        eventArray[0] = parseInt(eventArray[0], 10); //Convert the # of likes into an int
+        eventArray[0] = eventArray[0] + 1; //Add a like
+        event.target.previousElementSibling.innerText = eventArray.join(" ");
+        // console.log(event.target.previousElementSibling.innerText);
       })
       .catch(function (error){
         alert("Ragnarők!  Unable to leave a like for the toy!"); //Alert when error occurs when liking a toy
@@ -140,5 +138,4 @@ function updateLikes(event){ //Function to add a like
       for(const buttons of selectToyButtons){ //Loop through Array to ...
         buttons.addEventListener("click", (updateLikes)); //Place Event Listener on each button.
       }
-      // selectToyButtons.addEventListener("click", updateLikes);
     }
