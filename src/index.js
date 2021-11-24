@@ -49,9 +49,6 @@ fetch(toyUrl, {
   alert("Ragnarők!  Unable to create the toy!"); //Alert when error occurs with creating a toy
   document.body.innerHTML = error.message; //replace page contents with this error message.
 });
-
-alert("New toy has been added!  Press \"OK\" to relaod the page.");
-location.reload();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
