@@ -15,17 +15,17 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 let toyUrl = "http://localhost:3000/toys"; //toyUrl is URL where info of all toys is stored at.
-/* const toy = { Create toy Object, where for each key, the value is a reference to where to find it
-  Name:  document.getElementById("");
-  Image:  document.getElementById("");
-  Likes: getElementById("");
-}*/
+/* const toy = { Create toy Object; For each key, the value is a reference to where to find it
+  Name:  document.getElementById(""); //Get from nameInput.value
+  Image:  document.getElementById(""); //Get from imgInput.value
+  Likes: getElementById("");}*/
 let nameInput = document.getElementsByTagName("input")[0]; //set new toy's name to innerText.
 nameInput.id = "name-input";
 nameInput.addEventListener("submit", (event) => {
   event.preventDefault();
   console.log(event.target.value);
   toyData.toyName = nameInput.value;
+  console.log(toyData.toyName);
 })
 
 let imgInput = document.getElementsByTagName("input")[1]; //Set new toy's img to innerText.
@@ -34,6 +34,7 @@ imgInput.addEventListener("submit", (event) => {
   event.preventDefault();
   console.log(event.target.value);
   toyData.toyImage = imgInput.value;
+  console.log(toyData.toyImage);
 })
 
 document.addEventListener("DOMContentLoaded", () => {
