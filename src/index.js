@@ -34,8 +34,8 @@ function formSubmit(event){ //For pushing toy info to toys
   }
 
 // let imgInput = document.getElementsByTagName("input")[1]; //Set new toy's img to innerText.
-// imgInput.id = "image-input";
-// toy.image = imgInput.value;
+imgInput.id = "image-input";
+toy.image = imgInput.value;
 
 fetch(toyUrl, {
   method: "POST",
@@ -51,12 +51,12 @@ fetch(toyUrl, {
 });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOM has loaded");
+// document.addEventListener("DOMContentLoaded", () => {
+  // console.log("DOM has loaded");
   loadToys();
   let toyForm = document.getElementsByTagName("form")[0];
   toyForm.addEventListener("submit", formSubmit);
-});
+// });
 
 function loadToys(){ //loadToys is the function for fetching all of the toy Objects.
   fetch(toyUrl, {
@@ -99,8 +99,6 @@ function loadToys(){ //loadToys is the function for fetching all of the toy Obje
   });
 }
 
-// let createToy = document.getElementsByTagName("input")[2]; //The Submit button.
-
 function updateLikes(event){ //Function to add a like
       event.target.value;
       let toyID = `${toyUrl}/${event.target.id}`; //http://localhost:3000/(toy's ID #).
@@ -113,12 +111,10 @@ function updateLikes(event){ //Function to add a like
         body: JSON.stringify()
       })
       .then(data => { //Allows referencing the db data.
-        // console.log(event.target.previousElementSibling.innerText);
         let eventArray = event.target.previousElementSibling.innerText.split(" ");
         eventArray[0] = parseInt(eventArray[0], 10); //Convert the # of likes into an int
         eventArray[0] = eventArray[0] + 1; //Add a like
         event.target.previousElementSibling.innerText = eventArray.join(" ");
-        // console.log(event.target.previousElementSibling.innerText);
       })
       .catch(function (error){
         alert("Ragnarők!  Unable to leave a like for the toy!"); //Alert when error occurs when liking a toy
